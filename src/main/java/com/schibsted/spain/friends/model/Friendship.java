@@ -4,6 +4,7 @@
 package com.schibsted.spain.friends.model;
 
 import java.io.Serializable;
+import java.time.Clock;
 import java.time.Instant;
 
 import javax.persistence.EmbeddedId;
@@ -42,7 +43,7 @@ public class Friendship implements Serializable {
 
     @EmbeddedId
     @JsonIgnore
-    private UserFriendshipPK pk;
+    private FriendshipPK pk;
 
     @NotNull
     @Enumerated(EnumType.ORDINAL)
@@ -53,4 +54,14 @@ public class Friendship implements Serializable {
 
     @Version
     private int version;
+
+    public Friendship(User owner, User friend, FriendshipStatus status) {
+        pk = new FriendshipPK();
+        pk.setOwner(owner);
+        pk.setFriend(friend);
+        this.status = status;
+        this.updated = Clock.systemUTC()
+            .instant();
+    }
+
 }

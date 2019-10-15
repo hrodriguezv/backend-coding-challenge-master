@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.schibsted.spain.friends.exception.BaseException;
@@ -20,6 +21,9 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUserName(String userName);
     
+    @Query("SELECT u FROM User u JOIN FETCH u.friends friends WHERE u.id = :id and friends.status = 1")
+    public User findByIdAndFetchFriends(@Param("id") Long id);
+
     default void manageBaseException(String message) {
 
         switch (message) {

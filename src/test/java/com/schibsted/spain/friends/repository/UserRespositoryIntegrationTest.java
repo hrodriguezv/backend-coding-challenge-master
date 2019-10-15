@@ -33,23 +33,23 @@ public class UserRespositoryIntegrationTest {
 
     @Test
     public void givenNewUser_whenCreate_thenOK() {
-        User user = repository.save(new User("jperez", "#Holamund0", Collections.emptyList()));
+        User user = repository.save(new User("jperez", "#Holamund0", Collections.emptySet()));
         assertThat(user, is(notNullValue()));
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void givenNewUser_whenCreateInvalidPassword_thenFail() {
-        repository.save(new User("jperez", "holamundo", Collections.emptyList()));
+        repository.save(new User("jperez", "holamundo", Collections.emptySet()));
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void givenNewUser_whenCreateInvalidUserName_thenFail() {
-        repository.save(new User("sa", "@Holamundo1#", Collections.emptyList()));
+        repository.save(new User("sa", "@Holamundo1#", Collections.emptySet()));
     }
 
     @Test
     public void givenUser_whenFindById_thenSuccess() {
-        User user = new User("jperez", "#Holamund0", Collections.emptyList());
+        User user = new User("jperez", "#Holamund0", Collections.emptySet());
         repository.save(user);
 
         Optional<User> retrievedUser = repository.findById(user.getId());
@@ -59,7 +59,7 @@ public class UserRespositoryIntegrationTest {
 
     @Test
     public void givenUser_whenFindByUserName_thenSuccess() {
-        User user = new User("jperez", "#Holamund0", Collections.emptyList());
+        User user = new User("jperez", "#Holamund0", Collections.emptySet());
         repository.save(user);
 
         Optional<User> retrievedUser = repository.findByUserName(user.getUserName());
@@ -69,10 +69,10 @@ public class UserRespositoryIntegrationTest {
 
     @Test(expected = DataIntegrityViolationException.class)
     public void given2User_whenCreateSameUserName_thenFail() {
-        User user1 = new User("jperez", "#Holamund0", Collections.emptyList());
+        User user1 = new User("jperez", "#Holamund0", Collections.emptySet());
         repository.save(user1);
 
-        User user2 = new User("jperez", "#mund0Hola", Collections.emptyList());
+        User user2 = new User("jperez", "#mund0Hola", Collections.emptySet());
         repository.save(user2);
     }
 

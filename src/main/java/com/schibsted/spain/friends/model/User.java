@@ -3,8 +3,8 @@
  */
 package com.schibsted.spain.friends.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
-import javax.validation.Valid;
 
 import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
 import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
@@ -56,9 +55,8 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "pk.owner")
-    @Valid
-    private List<Friendship> userFriends = new ArrayList<>();
-
+    private Set<Friendship> friends = new HashSet<>();
+    
     @Version
     private int version;
     
@@ -69,10 +67,10 @@ public class User {
      * @param password the password
      * @param userFriends the user friends
      */
-    public User(String userName, String password, List<Friendship> userFriends) {
+    public User(String userName, String password, Set<Friendship> userFriends) {
         super();
         this.userName = userName;
         this.password = password;
-        this.userFriends = userFriends;
+        this.friends = userFriends;
     }
 }
