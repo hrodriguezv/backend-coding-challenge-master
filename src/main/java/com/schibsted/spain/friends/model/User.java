@@ -73,4 +73,13 @@ public class User {
         this.password = password;
         this.friends = userFriends;
     }
+
+    public User(Long id, String userName, String password, Set<Friendship> userFriends) {
+        super();
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.friends = userFriends;
+    }
+
 }

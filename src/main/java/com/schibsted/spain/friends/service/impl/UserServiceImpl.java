@@ -22,6 +22,7 @@ import com.schibsted.spain.friends.util.AdevintaConstants;
  * @author hrodriguez
  *
  */
+//@Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
 
