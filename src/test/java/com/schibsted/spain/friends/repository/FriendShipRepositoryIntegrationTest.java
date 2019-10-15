@@ -22,7 +22,7 @@ import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.repository.spec.IUserFriendShipRepository;
+import com.schibsted.spain.friends.repository.spec.IFriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.IUserRepository;
 
 /**
@@ -37,7 +37,7 @@ public class FriendShipRepositoryIntegrationTest {
     private IUserRepository userRepository;
 
     @Autowired
-    private IUserFriendShipRepository friendshipRepository;
+    private IFriendShipRepository friendshipRepository;
 
     @Test
     public void givenUsers_whenUser1RequestFriendshipUser2_thenSuccess() {

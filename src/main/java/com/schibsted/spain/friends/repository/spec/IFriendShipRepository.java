@@ -12,7 +12,7 @@ import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.User;
 
 @Repository
-public interface IUserFriendShipRepository extends JpaRepository<Friendship, FriendshipPK> {
+public interface IFriendShipRepository extends JpaRepository<Friendship, FriendshipPK> {
 
     @Query("SELECT f.pk.friend FROM Friendship f WHERE f.pk.owner.id = :id and f.status = 1")
     public List<User> findFriendsByUserId(@Param("id") Long id);
