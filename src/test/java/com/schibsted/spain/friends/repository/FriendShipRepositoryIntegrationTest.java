@@ -3,12 +3,13 @@
  */
 package com.schibsted.spain.friends.repository;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -79,9 +80,8 @@ public class FriendShipRepositoryIntegrationTest {
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);
         friendshipRepository.save(relation);
                 
-        Optional<Friendship> currentRelation = friendshipRepository.findById(new FriendshipPK(user1, user2));
+        List<User> friends = friendshipRepository.findFriendsByUserId(user1.getId());
 
-        assertThat(currentRelation.get()
-            .getStatus(), is(equalTo(FriendshipStatus.ACCEPTED)));
+        assertThat(friends, hasItem(user2));
     }
 }
