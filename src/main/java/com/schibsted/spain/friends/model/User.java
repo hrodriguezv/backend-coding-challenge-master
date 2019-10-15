@@ -3,18 +3,19 @@
  */
 package com.schibsted.spain.friends.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
+import javax.validation.Valid;
 
 import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
 import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
@@ -36,7 +37,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "user", uniqueConstraints={@UniqueConstraint(columnNames={"userName"})})
+@Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = { "userName" }) })
 public class User {
 
     /** The id. */
@@ -54,11 +55,13 @@ public class User {
     @PasswordConstraint
     private String password;
 
-    /** The user friends. */
-    @ManyToMany
-    @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "friendId"))
-    private Set<User> userFriends;
+    @OneToMany(mappedBy = "pk.owner")
+    @Valid
+    private List<Friendship> userFriends = new ArrayList<>();
 
+    @Version
+    private int version;
+    
     /**
      * Instantiates a new user.
      *
@@ -66,7 +69,7 @@ public class User {
      * @param password the password
      * @param userFriends the user friends
      */
-    public User(String userName, String password, Set<User> userFriends) {
+    public User(String userName, String password, List<Friendship> userFriends) {
         super();
         this.userName = userName;
         this.password = password;

@@ -38,43 +38,42 @@ public class PasswordValidatorTest {
      */
     @Test
     public void givenNewUser_whenValidatePwd_thenSuccess() {
-        
-        User dummyUser = new User(1L, "admin", "#holaVale1!", Collections.emptySet());
-        
+
+        User dummyUser = new User("admin", "#holaVale1!", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
-    
+
     }
-    
+
     @Test
     public void givenNewUser_whenValidateNumericPwd_thenFail() {
-        
-        User dummyUser = new User(1L, "admin", "12345678", Collections.emptySet());
-        
+
+        User dummyUser = new User("admin", "12345678", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(!violations.isEmpty());
-    
+
     }
 
     @Test
     public void givenNewUser_whenValidateInvalidMINSizeCharUserName_thenFail() {
-        
-        User dummyUser = new User(1L, "admin", "1234", Collections.emptySet());
-        
+
+        User dummyUser = new User("admin", "1234", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
-    
+
     }
-    
+
     @Test
     public void givenNewUser_whenValidateInvalidMAXSizeCharUserName_thenFail() {
-        
-        User dummyUser = new User(1L, "admin", "@#FASD@#@RASD#R#ASD#", Collections.emptySet());
-        
+
+        User dummyUser = new User("admin", "@#FASD@#@RASD#R#ASD#", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
-    
+
     }
-    
-    
+
 }

@@ -3,21 +3,23 @@
  */
 package com.schibsted.spain.friends.model;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -29,16 +31,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
-public class Friendship {
+public class Friendship implements Serializable {
 
-    @Id
-    @Column
-    private Long friendId;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5397498873072534679L;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    @EmbeddedId
+    @JsonIgnore
+    private UserFriendshipPK pk;
 
     @NotNull
     @Enumerated(EnumType.ORDINAL)
@@ -47,4 +51,6 @@ public class Friendship {
     @NotNull
     private Instant updated;
 
+    @Version
+    private int version;
 }

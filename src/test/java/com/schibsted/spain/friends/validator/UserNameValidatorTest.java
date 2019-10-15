@@ -38,43 +38,42 @@ public class UserNameValidatorTest {
      */
     @Test
     public void givenNewUser_whenValidateUserName_thenSuccess() {
-        
-        User dummyUser = new User(1L, "admin", "#PwdComp1", Collections.emptySet());
-        
+
+        User dummyUser = new User("admin", "#PwdComp1", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
-    
+
     }
-    
+
     @Test
     public void givenNewUser_whenValidateUserName_thenFail() {
-        
-        User dummyUser = new User(1L, "@admin", "", Collections.emptySet());
-        
+
+        User dummyUser = new User("@admin", "", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(!violations.isEmpty());
-    
+
     }
 
     @Test
     public void givenNewUser_whenValidateInvalidMINSizeCharUserName_thenFail() {
-        
-        User dummyUser = new User(1L, "sa", "", Collections.emptySet());
-        
+
+        User dummyUser = new User("sa", "", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
-    
+
     }
-    
+
     @Test
     public void givenNewUser_whenValidateInvalidMAXSizeCharUserName_thenFail() {
-        
-        User dummyUser = new User(1L, "ABCD1234567890", "", Collections.emptySet());
-        
+
+        User dummyUser = new User("ABCD1234567890", "", Collections.emptyList());
+
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
-    
+
     }
-    
-    
+
 }
