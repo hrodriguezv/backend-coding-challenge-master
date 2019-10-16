@@ -31,13 +31,13 @@ public class UserServiceIntegrationTest {
 
     @Test
     public void givenNewUser_whenSignUpUsingCorrectValues_thenOK() {
-        User user = service.signUp("jperez", "#Holamund0");
+        User user = service.signUp("jperez", "Holamund0");
         assertThat(user, is(notNullValue()));
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void givenNewUser_whenSignUpUsingInvalidPassword_thenFail() {
-        service.signUp("jperez", "holamundo");
+        service.signUp("jperez", "hol#amundo");
     }
 
     @Test(expected = ConstraintViolationException.class)

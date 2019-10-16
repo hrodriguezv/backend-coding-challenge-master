@@ -41,10 +41,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenUser1RequestFriendshipUser2_thenSuccess() {
-        User user1 = new User("jperez", "#Holamund0", Collections.emptySet());
+        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "#mund0Hola", Collections.emptySet());
+        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
         userRepository.save(user2);
 
         Friendship relation = friendshipRepository.save(new Friendship(user1, user2, FriendshipStatus.REQUESTED));
@@ -54,10 +54,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenUser1SentRequestFriendshipUser2_thenOK() {
-        User user1 = new User("jperez", "#Holamund0", Collections.emptySet());
+        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "#mund0Hola", Collections.emptySet());
+        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.REQUESTED);
@@ -71,10 +71,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenAcceptedFriendship_thenOK() {
-        User user1 = new User("jperez", "#Holamund0", Collections.emptySet());
+        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "#mund0Hola", Collections.emptySet());
+        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);
