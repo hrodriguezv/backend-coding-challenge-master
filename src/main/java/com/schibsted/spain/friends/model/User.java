@@ -54,9 +54,11 @@ public class User {
     @PasswordConstraint
     private String password;
 
+    /** The friends. */
     @OneToMany(mappedBy = "pk.owner")
     private Set<Friendship> friends = new HashSet<>();
     
+    /** The version. */
     @Version
     private int version;
     
@@ -74,6 +76,14 @@ public class User {
         this.friends = userFriends;
     }
 
+    /**
+     * Instantiates a new user.
+     *
+     * @param id the id
+     * @param userName the user name
+     * @param password the password
+     * @param userFriends the user friends
+     */
     public User(Long id, String userName, String password, Set<Friendship> userFriends) {
         super();
         this.id = id;

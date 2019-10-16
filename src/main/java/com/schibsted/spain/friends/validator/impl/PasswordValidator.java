@@ -17,7 +17,7 @@ import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
  */
 public class PasswordValidator implements ConstraintValidator<PasswordConstraint, String> {
 
-    private Pattern pattern = Pattern.compile("^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$");
+    private Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
 
     @Override
     public boolean isValid(String pwd, ConstraintValidatorContext context) {

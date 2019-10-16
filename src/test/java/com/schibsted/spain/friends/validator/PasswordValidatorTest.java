@@ -39,7 +39,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidatePwd_thenSuccess() {
 
-        User dummyUser = new User("admin", "#holaVale1!", Collections.emptySet());
+        User dummyUser = new User("admin", "j12345678", Collections.emptySet());
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
@@ -47,12 +47,12 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void givenNewUser_whenValidateNumericPwd_thenFail() {
+    public void givenNewUser_whenValidateNumericPwd_thenSuccess() {
 
         User dummyUser = new User("admin", "12345678", Collections.emptySet());
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
-        assertTrue(!violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
@@ -76,4 +76,13 @@ public class PasswordValidatorTest {
 
     }
 
+    @Test
+    public void givenNewUser_whenValidateInvalidFormatPwd_thenFail() {
+
+        User dummyUser = new User("admin", "j123-4", Collections.emptySet());
+
+        Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
+        assertFalse(violations.isEmpty());
+
+    }
 }

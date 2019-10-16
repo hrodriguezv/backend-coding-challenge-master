@@ -39,7 +39,7 @@ public class UserNameValidatorTest {
     @Test
     public void givenNewUser_whenValidateUserName_thenSuccess() {
 
-        User dummyUser = new User("admin", "#PwdComp1", Collections.emptySet());
+        User dummyUser = new User("admin", "PwdComp1", Collections.emptySet());
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());

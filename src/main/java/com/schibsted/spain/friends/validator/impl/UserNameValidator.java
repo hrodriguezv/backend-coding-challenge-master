@@ -17,7 +17,7 @@ import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
  */
 public class UserNameValidator implements ConstraintValidator<UserNameConstraint, String> {
 
-    private Pattern pattern = Pattern.compile("[A-Za-z0-9_]+");
+    private Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
 
     @Override
     public boolean isValid(String userName, ConstraintValidatorContext context) {
