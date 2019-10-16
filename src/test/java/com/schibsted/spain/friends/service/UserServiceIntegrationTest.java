@@ -7,14 +7,14 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import javax.validation.ConstraintViolationException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.schibsted.spain.friends.exception.InvalidPasswordException;
+import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.service.spec.IUserService;
 
@@ -35,12 +35,12 @@ public class UserServiceIntegrationTest {
         assertThat(user, is(notNullValue()));
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = InvalidPasswordException.class)
     public void givenNewUser_whenSignUpUsingInvalidPassword_thenFail() {
         service.signUp("jperez", "hol#amundo");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = InvalidUserNameException.class)
     public void givenNewUser_whenSignUpUsingInvalidUserName_thenFail() {
         service.signUp("sa", "@Holamundo1#");
     }
