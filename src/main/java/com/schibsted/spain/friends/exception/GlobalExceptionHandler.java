@@ -3,6 +3,9 @@
  */
 package com.schibsted.spain.friends.exception;
 
+import javax.validation.ConstraintViolationException;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,8 +21,8 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(javax.validation.ConstraintViolationException.class)
-    public ResponseEntity<Void> handleInvalidUserNameorPasswordException(javax.validation.ConstraintViolationException ex) {
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Void> handleInvalidUserNameorPasswordException(ConstraintViolationException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
@@ -28,8 +31,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
-    public ResponseEntity<Void> handleSqlException(org.hibernate.exception.ConstraintViolationException ex) {
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Void> handleDataIntegrityException(DataIntegrityViolationException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
