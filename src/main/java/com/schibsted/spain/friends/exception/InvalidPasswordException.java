@@ -16,11 +16,18 @@ public class InvalidPasswordException extends BaseException {
 
     /**
      * Instantiates a new invalid password exception.
+     */
+    public InvalidPasswordException() {
+    }
+
+    /**
+     * Instantiates a new invalid password exception.
      *
      * @param message the message
      */
     public InvalidPasswordException(String message) {
         super(message);
     }
+
 
 }

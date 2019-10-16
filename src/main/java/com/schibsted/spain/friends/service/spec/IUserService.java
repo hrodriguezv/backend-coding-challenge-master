@@ -8,7 +8,7 @@ import com.schibsted.spain.friends.model.User;
 
 public interface IUserService {
 
-    List<User> listFriendsByUserName(String userName) throws BaseException;
+    List<User> listFriendsByUserName(String userName, String pwd) throws BaseException;
 
     User signUp(String userName, String pwd) throws BaseException;
     

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schibsted.spain.friends.exception.BaseException;
+import com.schibsted.spain.friends.exception.InvalidPasswordException;
+import com.schibsted.spain.friends.exception.InvalidUserDoesNotExistException;
 import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.IFriendShipRepository;
@@ -22,7 +24,6 @@ import com.schibsted.spain.friends.util.AdevintaConstants;
  * @author hrodriguez
  *
  */
-// @Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -47,7 +48,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> listFriendsByUserName(String userName) throws BaseException {
+    public List<User> listFriendsByUserName(String userName, String pwd) throws BaseException {
 
         if (userName == null) {
             throw new InvalidUserNameException(AdevintaConstants.INVALID_USERNAME_NULL);
@@ -57,12 +58,17 @@ public class UserServiceImpl implements IUserService {
 
         if (user.isPresent()) {
 
-            User entity = user.get();
-            return friendshipRepository.findFriendsByUserId(entity.getId());
+            if (!user.get()
+                .getPassword()
+                .equals(pwd))
+                throw new InvalidPasswordException();
 
+            return friendshipRepository.findFriendsByUserId(user.get()
+                .getId());
+
+        } else {
+            throw new InvalidUserDoesNotExistException();
         }
-
-        return Collections.emptyList();
     }
 
     @Override

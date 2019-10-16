@@ -1,6 +1,7 @@
 package com.schibsted.spain.friends.legacy;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -128,7 +129,10 @@ public class FriendshipLegacyController {
 
     @GetMapping("/list")
     Object listFriends(@RequestParam("username") String username, @RequestHeader("X-Password") String password) {
-        return userService.listFriendsByUserName(username);
+        return userService.listFriendsByUserName(username, password)
+            .stream()
+            .map(user -> user.getUserName())
+            .collect(Collectors.toList());
     }
 
 }

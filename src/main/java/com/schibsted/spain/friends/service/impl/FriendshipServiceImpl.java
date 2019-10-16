@@ -62,6 +62,10 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 requestedFriendship.setUpdated(Clock.systemDefaultZone()
                     .instant());
                 repository.saveAndFlush(requestedFriendship);
+
+                Friendship approvedInverse = new Friendship(userOwner, userAdded, FriendshipStatus.ACCEPTED);
+                repository.saveAndFlush(approvedInverse);
+
                 return;
 
             }

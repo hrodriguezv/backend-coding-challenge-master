@@ -4,7 +4,6 @@ import com.schibsted.spain.friends.dto.UserDTO;
 import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserMapperUtil.
  */
