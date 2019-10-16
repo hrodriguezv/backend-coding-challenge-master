@@ -28,16 +28,17 @@ public class FriendShipRepositoryImpl implements FriendShipRepository {
 
     @Override
     public List<User> findFriendsByUserName(String userName) {
-        return null;
+        return BuiltinMemoryStore.getInstance().getFriendsListByUserName(userName);
     }
 
     @Override
     public Optional<Friendship> findById(FriendshipPK pk) {
-        return null;
+        return Optional.ofNullable(BuiltinMemoryStore.getInstance().getRelationship(pk));
     }
 
     @Override
     public Friendship save(Friendship entity) {
-        return null;
+        return BuiltinMemoryStore.getInstance()
+            .addFriendship(entity.getPk(), entity);
     }
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.schibsted.spain.friends.model.Friendship;
@@ -30,7 +30,7 @@ import com.schibsted.spain.friends.repository.spec.UserRepository;
  *
  */
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest
 public class FriendShipRepositoryIntegrationTest {
 
     @Autowired
@@ -54,10 +54,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenUser1SentRequestFriendshipUser2_thenOK() {
-        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
+        User user1 = new User("hperez", "Holamund0", Collections.emptySet());
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
+        User user2 = new User("ogonzalez", "mund0Hola", Collections.emptySet());
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.REQUESTED);
@@ -71,10 +71,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenAcceptedFriendship_thenOK() {
-        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
+        User user1 = new User("pperez", "Holamund0", Collections.emptySet());
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
+        User user2 = new User("ygonzalez", "mund0Hola", Collections.emptySet());
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);
