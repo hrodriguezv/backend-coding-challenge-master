@@ -1,8 +1,10 @@
 package com.schibsted.spain.friends.mapper;
 
 import com.schibsted.spain.friends.dto.UserDTO;
+import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.User;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UserMapperUtil.
  */
@@ -25,6 +27,17 @@ public class UserMapperUtil {
     }
 
     /**
+     * Builds the DTO from.
+     *
+     * @param relation the relation
+     * @return the user DTO
+     */
+    public static UserDTO buildDTOFrom(Friendship relation) {
+        return new UserDTO(String.valueOf(relation.getPk().getFriend()
+            .getId()), relation.getPk().getFriend().getUserName(), relation.getPk().getFriend().getPassword(), FriendshipMapperUtil.buildDTOFrom(relation.getPk().getFriend().getFriends()));
+    }
+
+    /**
      * Builds the entity from.
      *
      * @param dto the dto
@@ -32,6 +45,10 @@ public class UserMapperUtil {
      */
     public static User buildEntityFrom(UserDTO dto) {
         return new User(Long.valueOf(dto.getId()), dto.getUserName(), dto.getPwd(), FriendshipMapperUtil.buildEntityFrom(dto.getFriends(), dto));
+    }
+
+    public static Friendship buildEntityFrom(UserDTO owner, UserDTO friend) {
+        return null;
     }
 
 }

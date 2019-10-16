@@ -1,8 +1,8 @@
 package com.schibsted.spain.friends.mapper;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.schibsted.spain.friends.dto.UserDTO;
 import com.schibsted.spain.friends.model.Friendship;
@@ -11,7 +11,7 @@ import com.schibsted.spain.friends.model.Friendship;
  * The Class FriendshipMapperUtil.
  */
 public class FriendshipMapperUtil {
-    
+
     /**
      * Instantiates a new friendship mapper util.
      */
@@ -25,7 +25,9 @@ public class FriendshipMapperUtil {
      * @return the list
      */
     public static List<UserDTO> buildDTOFrom(Set<Friendship> relations) {
-        return Collections.emptyList();
+        return relations.stream()
+            .map(UserMapperUtil::buildDTOFrom)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -36,7 +38,9 @@ public class FriendshipMapperUtil {
      * @return the sets the
      */
     public static Set<Friendship> buildEntityFrom(List<UserDTO> dtos, UserDTO owner) {
-        return Collections.emptySet();
+        return dtos.stream()
+            .map(dto -> UserMapperUtil.buildEntityFrom(owner, dto))
+            .collect(Collectors.toSet());
     }
 
 }
