@@ -25,7 +25,7 @@ import com.schibsted.spain.friends.repository.spec.IUserRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserRespositoryIntegrationTest {
+public class UserRepositoryIntegrationTest {
 
     /** The repository. */
     @Autowired

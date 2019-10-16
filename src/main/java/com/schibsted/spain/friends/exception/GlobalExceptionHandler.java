@@ -50,17 +50,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Void> handleInvalidHimSelfRequestException(InvalidHimSelfRequestFrienshipException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
-    
+
     @ExceptionHandler(InvalidUserDoesNotExistException.class)
     public ResponseEntity<Void> handleInvalidUserDoesNotExistException(InvalidUserDoesNotExistException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-    } 
-    
+    }
+
     @ExceptionHandler(InvalidPreviousRequestSentException.class)
     public ResponseEntity<Void> handleInvalidPreviousRequestSentException(InvalidPreviousRequestSentException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
-    
+
     @ExceptionHandler(InvalidRequestAlreadyFriendsException.class)
     public ResponseEntity<Void> handleInvalidRequestAlreadyFriendsException(InvalidRequestAlreadyFriendsException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -68,6 +68,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidRequestRequiredException.class)
     public ResponseEntity<Void> handleInvalidRequestRequiredException(InvalidRequestRequiredException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(InvalidPreviousDeclinedRequestException.class)
+    public ResponseEntity<Void> handleInvalidPreviousRequestException(InvalidPreviousDeclinedRequestException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 

@@ -100,12 +100,35 @@ public class FriendshipLegacyController {
 
     @PostMapping("/decline")
     void declineFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
+
         checkEntryData(usernameFrom, usernameTo);
 
+        User userFrom = userService.findByUserName(usernameFrom)
+            .orElseThrow(InvalidUserDoesNotExistException::new);
+        User userTo = userService.findByUserName(usernameTo)
+            .orElseThrow(InvalidUserDoesNotExistException::new);
+
+        Optional<Friendship> previousRelation = friendShipService.findRelation(userTo, userFrom);
+
+        if (previousRelation.isPresent()) {
+            FriendshipStatus status = previousRelation.get()
+                .getStatus();
+
+            if (status.equals(FriendshipStatus.ACCEPTED)) {
+                throw new InvalidRequestAlreadyFriendsException();
+            } else if (status.equals(FriendshipStatus.DECLINED)) {
+                throw new InvalidRequestRequiredException();
+            } else if (status.equals(FriendshipStatus.REQUESTED)) {
+                friendShipService.declineFriendship(userFrom, userTo);
+            }
+        } else {
+            throw new InvalidRequestRequiredException();
+        }
     }
 
     @GetMapping("/list")
     Object listFriends(@RequestParam("username") String username, @RequestHeader("X-Password") String password) {
-        throw new RuntimeException("not implemented yet!");
+        return userService.listFriendsByUserName(username);
     }
+
 }
