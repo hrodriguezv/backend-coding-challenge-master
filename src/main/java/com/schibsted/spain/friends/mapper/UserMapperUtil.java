@@ -8,7 +8,7 @@ import com.schibsted.spain.friends.model.User;
  * The Class UserMapperUtil.
  */
 public class UserMapperUtil {
-    
+
     /**
      * Instantiates a new user mapper util.
      */
@@ -22,7 +22,7 @@ public class UserMapperUtil {
      * @return the user DTO
      */
     public static UserDTO buildDTOFrom(User user) {
-        return new UserDTO(String.valueOf(user.getId()), user.getUserName(), user.getPassword(), FriendshipMapperUtil.buildDTOFrom(user.getFriends()));
+        return new UserDTO(user.getUserName(), user.getPassword(), FriendshipMapperUtil.buildDTOFrom(user.getFriends()));
     }
 
     /**
@@ -32,8 +32,15 @@ public class UserMapperUtil {
      * @return the user DTO
      */
     public static UserDTO buildDTOFrom(Friendship relation) {
-        return new UserDTO(String.valueOf(relation.getPk().getFriend()
-            .getId()), relation.getPk().getFriend().getUserName(), relation.getPk().getFriend().getPassword(), FriendshipMapperUtil.buildDTOFrom(relation.getPk().getFriend().getFriends()));
+        return new UserDTO(relation.getPk()
+            .getFriend()
+            .getUserName(),
+            relation.getPk()
+                .getFriend()
+                .getPassword(),
+            FriendshipMapperUtil.buildDTOFrom(relation.getPk()
+                .getFriend()
+                .getFriends()));
     }
 
     /**
@@ -43,7 +50,7 @@ public class UserMapperUtil {
      * @return the user
      */
     public static User buildEntityFrom(UserDTO dto) {
-        return new User(Long.valueOf(dto.getId()), dto.getUserName(), dto.getPwd(), FriendshipMapperUtil.buildEntityFrom(dto.getFriends(), dto));
+        return new User(dto.getUserName(), dto.getPwd(), FriendshipMapperUtil.buildEntityFrom(dto.getFriends(), dto));
     }
 
     public static Friendship buildEntityFrom(UserDTO owner, UserDTO friend) {

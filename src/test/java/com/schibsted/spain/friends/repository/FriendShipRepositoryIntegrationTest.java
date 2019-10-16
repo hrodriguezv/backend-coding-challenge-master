@@ -22,8 +22,8 @@ import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.repository.spec.IFriendShipRepository;
-import com.schibsted.spain.friends.repository.spec.IUserRepository;
+import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
+import com.schibsted.spain.friends.repository.spec.UserRepository;
 
 /**
  * @author hrodriguez
@@ -34,10 +34,10 @@ import com.schibsted.spain.friends.repository.spec.IUserRepository;
 public class FriendShipRepositoryIntegrationTest {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private IFriendShipRepository friendshipRepository;
+    private FriendShipRepository friendshipRepository;
 
     @Test
     public void givenUsers_whenUser1RequestFriendshipUser2_thenSuccess() {
@@ -80,7 +80,7 @@ public class FriendShipRepositoryIntegrationTest {
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);
         friendshipRepository.save(relation);
                 
-        List<User> friends = friendshipRepository.findFriendsByUserId(user1.getId());
+        List<User> friends = friendshipRepository.findFriendsByUserName(user1.getUserName());
 
         assertThat(friends, hasItem(user2));
     }

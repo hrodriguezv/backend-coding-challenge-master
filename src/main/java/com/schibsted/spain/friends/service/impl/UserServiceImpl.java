@@ -15,8 +15,8 @@ import com.schibsted.spain.friends.exception.InvalidPasswordException;
 import com.schibsted.spain.friends.exception.InvalidUserDoesNotExistException;
 import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.repository.spec.IFriendShipRepository;
-import com.schibsted.spain.friends.repository.spec.IUserRepository;
+import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
+import com.schibsted.spain.friends.repository.spec.UserRepository;
 import com.schibsted.spain.friends.service.spec.IUserService;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
@@ -28,10 +28,10 @@ import com.schibsted.spain.friends.util.AdevintaConstants;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private IFriendShipRepository friendshipRepository;
+    private FriendShipRepository friendshipRepository;
 
     @Override
     public User signUp(String userName, String pwd) throws BaseException {
@@ -63,8 +63,8 @@ public class UserServiceImpl implements IUserService {
                 .equals(pwd))
                 throw new InvalidPasswordException();
 
-            return friendshipRepository.findFriendsByUserId(user.get()
-                .getId());
+            return friendshipRepository.findFriendsByUserName(user.get()
+                .getUserName());
 
         } else {
             throw new InvalidUserDoesNotExistException();

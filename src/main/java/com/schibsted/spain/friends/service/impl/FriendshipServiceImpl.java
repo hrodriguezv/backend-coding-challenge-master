@@ -1,6 +1,5 @@
 package com.schibsted.spain.friends.service.impl;
 
-import java.time.Clock;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +11,14 @@ import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.repository.spec.IFriendShipRepository;
+import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.service.spec.IFriendshipService;
 
 @Service
 public class FriendshipServiceImpl implements IFriendshipService {
 
     @Autowired
-    private IFriendShipRepository repository;
+    private FriendShipRepository repository;
 
     @Override
     public void requestFriendship(User userOwner, User userAdded) {
@@ -33,8 +32,6 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 .equals(FriendshipStatus.DECLINED)) {
 
                 requestedFriendship.setStatus(FriendshipStatus.REQUESTED);
-                requestedFriendship.setUpdated(Clock.systemDefaultZone()
-                    .instant());
 
             } else {
                 throw new InvalidPreviousDeclinedRequestException();
@@ -43,7 +40,7 @@ public class FriendshipServiceImpl implements IFriendshipService {
             requestedFriendship = new Friendship(userOwner, userAdded, FriendshipStatus.REQUESTED);
         }
 
-        repository.saveAndFlush(requestedFriendship);
+        repository.save(requestedFriendship);
     }
 
     @Override
@@ -59,12 +56,10 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 .equals(FriendshipStatus.REQUESTED)) {
 
                 requestedFriendship.setStatus(FriendshipStatus.ACCEPTED);
-                requestedFriendship.setUpdated(Clock.systemDefaultZone()
-                    .instant());
-                repository.saveAndFlush(requestedFriendship);
+                repository.save(requestedFriendship);
 
                 Friendship approvedInverse = new Friendship(userOwner, userAdded, FriendshipStatus.ACCEPTED);
-                repository.saveAndFlush(approvedInverse);
+                repository.save(approvedInverse);
 
                 return;
 
@@ -87,9 +82,7 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 .equals(FriendshipStatus.REQUESTED)) {
 
                 requestedFriendship.setStatus(FriendshipStatus.DECLINED);
-                requestedFriendship.setUpdated(Clock.systemDefaultZone()
-                    .instant());
-                repository.saveAndFlush(requestedFriendship);
+                repository.save(requestedFriendship);
                 return;
             }
 

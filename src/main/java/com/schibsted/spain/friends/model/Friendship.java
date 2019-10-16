@@ -4,18 +4,6 @@
 package com.schibsted.spain.friends.model;
 
 import java.io.Serializable;
-import java.time.Clock;
-import java.time.Instant;
-
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,8 +15,6 @@ import lombok.Setter;
  * @author hrodriguez
  *
  */
-@Entity
-@Table(name = "user_friends")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -41,27 +27,15 @@ public class Friendship implements Serializable {
      */
     private static final long serialVersionUID = 5397498873072534679L;
 
-    @EmbeddedId
-    @JsonIgnore
     private FriendshipPK pk;
 
-    @NotNull
-    @Enumerated(EnumType.ORDINAL)
     private FriendshipStatus status;
-
-    @NotNull
-    private Instant updated;
-
-    @Version
-    private int version;
 
     public Friendship(User owner, User friend, FriendshipStatus status) {
         pk = new FriendshipPK();
         pk.setOwner(owner);
         pk.setFriend(friend);
         this.status = status;
-        this.updated = Clock.systemUTC()
-            .instant();
     }
 
 }

@@ -21,7 +21,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.repository.spec.IUserRepository;
+import com.schibsted.spain.friends.repository.spec.UserRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -29,7 +29,7 @@ public class UserRepositoryIntegrationTest {
 
     /** The repository. */
     @Autowired
-    private IUserRepository repository;
+    private UserRepository repository;
 
     @Test
     public void givenNewUser_whenCreate_thenOK() {
@@ -52,7 +52,7 @@ public class UserRepositoryIntegrationTest {
         User user = new User("jperez", "Holamund0", Collections.emptySet());
         repository.save(user);
 
-        Optional<User> retrievedUser = repository.findById(user.getId());
+        Optional<User> retrievedUser = repository.findByUserName(user.getUserName());
 
         assertThat(retrievedUser.get(), is(equalTo(user)));
     }
