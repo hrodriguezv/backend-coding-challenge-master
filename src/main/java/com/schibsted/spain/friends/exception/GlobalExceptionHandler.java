@@ -36,4 +36,39 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    @ExceptionHandler(InvalidUserNameException.class)
+    public ResponseEntity<Void> handleInvalidUserNameException(InvalidUserNameException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<Void> handleInvalidPasswordException(InvalidPasswordException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(InvalidHimSelfRequestFrienshipException.class)
+    public ResponseEntity<Void> handleInvalidHimSelfRequestException(InvalidHimSelfRequestFrienshipException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    
+    @ExceptionHandler(InvalidUserDoesNotExistException.class)
+    public ResponseEntity<Void> handleInvalidUserDoesNotExistException(InvalidUserDoesNotExistException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    } 
+    
+    @ExceptionHandler(InvalidPreviousRequestSentException.class)
+    public ResponseEntity<Void> handleInvalidPreviousRequestSentException(InvalidPreviousRequestSentException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    
+    @ExceptionHandler(InvalidRequestAlreadyFriendsException.class)
+    public ResponseEntity<Void> handleInvalidRequestAlreadyFriendsException(InvalidRequestAlreadyFriendsException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(InvalidRequestRequiredException.class)
+    public ResponseEntity<Void> handleInvalidRequestRequiredException(InvalidRequestRequiredException ex) {
+        return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
 }

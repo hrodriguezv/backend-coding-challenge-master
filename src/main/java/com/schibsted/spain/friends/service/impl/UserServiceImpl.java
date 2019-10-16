@@ -22,7 +22,7 @@ import com.schibsted.spain.friends.util.AdevintaConstants;
  * @author hrodriguez
  *
  */
-//@Slf4j
+// @Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -63,6 +63,11 @@ public class UserServiceImpl implements IUserService {
         }
 
         return Collections.emptyList();
+    }
+
+    @Override
+    public Optional<User> findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 
 }
