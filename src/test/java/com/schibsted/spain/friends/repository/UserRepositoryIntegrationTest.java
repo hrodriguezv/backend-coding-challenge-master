@@ -56,7 +56,7 @@ public class UserRepositoryIntegrationTest {
      */
     @Test(expected = InvalidUserNameException.class)
     public void givenNewUser_whenCreateInvalidUserName_thenFail() {
-        repository.save(new User("sa", "@Holamundo1#"));
+        repository.save(new User("sa", "Holamundo1"));
     }
 
     /**
