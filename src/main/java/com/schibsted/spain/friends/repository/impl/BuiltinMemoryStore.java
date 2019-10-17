@@ -159,6 +159,7 @@ public class BuiltinMemoryStore {
                     .equals(FriendshipStatus.ACCEPTED))
             .map(fr -> fr.getPk()
                 .getFriend())
+            .sorted(User::compareByReverseUserName)
             .collect(Collectors.toList());
     }
 }
