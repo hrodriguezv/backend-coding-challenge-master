@@ -1,17 +1,11 @@
 package com.schibsted.spain.friends.service.spec;
 
-import java.util.Optional;
-
-import com.schibsted.spain.friends.model.Friendship;
-import com.schibsted.spain.friends.model.User;
-
 public interface IFriendshipService {
 
-    void requestFriendship(User userOwner, User userAdded);
+    void requestFriendship(String userOwner, String userAdded);
 
-    void acceptFriendship(User userOwner, User userAdded);
+    void acceptFriendship(String userOwner, String userAdded);
 
-    void declineFriendship(User userOwner, User userAdded);
+    void declineFriendship(String userOwner, String userAdded);
 
-    Optional<Friendship> findRelation(User userOwner, User userAdded);
 }

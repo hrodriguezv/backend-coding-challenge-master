@@ -1,6 +1,5 @@
 package com.schibsted.spain.friends.legacy;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.schibsted.spain.friends.exception.InvalidHimSelfRequestFrienshipException;
-import com.schibsted.spain.friends.exception.InvalidPreviousRequestSentException;
-import com.schibsted.spain.friends.exception.InvalidRequestAlreadyFriendsException;
-import com.schibsted.spain.friends.exception.InvalidRequestRequiredException;
-import com.schibsted.spain.friends.exception.InvalidUserDoesNotExistException;
 import com.schibsted.spain.friends.exception.InvalidUserNameException;
-import com.schibsted.spain.friends.model.Friendship;
-import com.schibsted.spain.friends.model.FriendshipStatus;
-import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.service.spec.IFriendshipService;
 import com.schibsted.spain.friends.service.spec.IUserService;
 import com.schibsted.spain.friends.util.AdevintaConstants;
@@ -48,83 +40,24 @@ public class FriendshipLegacyController {
     void requestFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
+        friendShipService.requestFriendship(usernameFrom, usernameTo);
 
-        User userFrom = userService.findByUserName(usernameFrom)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-        User userTo = userService.findByUserName(usernameTo)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-
-        Optional<Friendship> previousRelation = friendShipService.findRelation(userFrom, userTo);
-
-        if (previousRelation.isPresent()) {
-            FriendshipStatus status = previousRelation.get()
-                .getStatus();
-
-            if (status.equals(FriendshipStatus.REQUESTED)) {
-                throw new InvalidPreviousRequestSentException();
-            } else if (status.equals(FriendshipStatus.ACCEPTED)) {
-                throw new InvalidRequestAlreadyFriendsException();
-            }
-
-        }
-
-        friendShipService.requestFriendship(userFrom, userTo);
     }
 
     @PostMapping("/accept")
     void acceptFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
+        friendShipService.acceptFriendship(usernameFrom, usernameTo);
 
-        User userFrom = userService.findByUserName(usernameFrom)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-        User userTo = userService.findByUserName(usernameTo)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-
-        Optional<Friendship> previousRelation = friendShipService.findRelation(userTo, userFrom);
-
-        if (previousRelation.isPresent()) {
-            FriendshipStatus status = previousRelation.get()
-                .getStatus();
-
-            if (status.equals(FriendshipStatus.ACCEPTED)) {
-                throw new InvalidRequestAlreadyFriendsException();
-            } else if (status.equals(FriendshipStatus.DECLINED)) {
-                throw new InvalidRequestRequiredException();
-            } else if (status.equals(FriendshipStatus.REQUESTED)) {
-                friendShipService.acceptFriendship(userFrom, userTo);
-            }
-        } else {
-            throw new InvalidRequestRequiredException();
-        }
     }
 
     @PostMapping("/decline")
     void declineFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
+        friendShipService.declineFriendship(usernameFrom, usernameTo);
 
-        User userFrom = userService.findByUserName(usernameFrom)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-        User userTo = userService.findByUserName(usernameTo)
-            .orElseThrow(InvalidUserDoesNotExistException::new);
-
-        Optional<Friendship> previousRelation = friendShipService.findRelation(userTo, userFrom);
-
-        if (previousRelation.isPresent()) {
-            FriendshipStatus status = previousRelation.get()
-                .getStatus();
-
-            if (status.equals(FriendshipStatus.ACCEPTED)) {
-                throw new InvalidRequestAlreadyFriendsException();
-            } else if (status.equals(FriendshipStatus.DECLINED)) {
-                throw new InvalidRequestRequiredException();
-            } else if (status.equals(FriendshipStatus.REQUESTED)) {
-                friendShipService.declineFriendship(userFrom, userTo);
-            }
-        } else {
-            throw new InvalidRequestRequiredException();
-        }
     }
 
     @GetMapping("/list")
