@@ -24,20 +24,27 @@ import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author hrodriguez
+ * The Class FriendShipRepositoryIntegrationTest.
  *
+ * @author hrodriguez
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FriendShipRepositoryIntegrationTest {
 
+    /** The user repository. */
     @Autowired
     private UserRepository userRepository;
 
+    /** The friendship repository. */
     @Autowired
     private FriendShipRepository friendshipRepository;
 
+    /**
+     * Given users when user 1 request friendship user 2 then success.
+     */
     @Test
     public void givenUsers_whenUser1RequestFriendshipUser2_thenSuccess() {
         User user1 = new User("jperez", "Holamund0");
@@ -51,12 +58,15 @@ public class FriendShipRepositoryIntegrationTest {
         assertThat(relation, is(notNullValue()));
     }
 
+    /**
+     * Given users when user 1 sent request friendship user 2 then OK.
+     */
     @Test
     public void givenUsers_whenUser1SentRequestFriendshipUser2_thenOK() {
-        User user1 = new User("hperez", "Holamund0");
+        User user1 = new User("hperez", "Holamund1");
         userRepository.save(user1);
 
-        User user2 = new User("ogonzalez", "mund0Hola");
+        User user2 = new User("ogonzalez", "mund1Hola");
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.REQUESTED);
@@ -64,16 +74,18 @@ public class FriendShipRepositoryIntegrationTest {
 
         Optional<Friendship> previousRequest = friendshipRepository.findById(new FriendshipPK(user1, user2));
 
-        assertThat(previousRequest.get()
-            .getStatus(), is(FriendshipStatus.REQUESTED));
+        previousRequest.ifPresent(friendship -> assertThat(friendship.getStatus(), is(FriendshipStatus.REQUESTED)));
     }
 
+    /**
+     * Given users when accepted friendship then OK.
+     */
     @Test
     public void givenUsers_whenAcceptedFriendship_thenOK() {
-        User user1 = new User("pperez", "Holamund0");
+        User user1 = new User("pperez", "Holamund2");
         userRepository.save(user1);
 
-        User user2 = new User("ygonzalez", "mund0Hola");
+        User user2 = new User("ygonzalez", "mund2Hola");
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);

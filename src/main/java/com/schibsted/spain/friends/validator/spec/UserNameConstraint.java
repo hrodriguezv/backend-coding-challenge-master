@@ -14,9 +14,11 @@ import javax.validation.Payload;
 
 import com.schibsted.spain.friends.validator.impl.UserNameValidator;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author hrodriguez
+ * The Interface UserNameConstraint.
  *
+ * @author hrodriguez
  */
 @Documented
 @Constraint(validatedBy = UserNameValidator.class)

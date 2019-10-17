@@ -19,19 +19,31 @@ import com.schibsted.spain.friends.repository.spec.UserRepository;
 import com.schibsted.spain.friends.service.spec.IUserService;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author hrodriguez
+ * The Class UserServiceImpl.
  *
+ * @author hrodriguez
  */
 @Service
 public class UserServiceImpl implements IUserService {
 
+    /** The user repository. */
     @Autowired
     private UserRepository userRepository;
 
+    /** The friendship repository. */
     @Autowired
     private FriendShipRepository friendshipRepository;
 
+    /**
+     * Sign up.
+     *
+     * @param userName the user name
+     * @param pwd the pwd
+     * @return the user
+     * @throws BaseException the base exception
+     */
     @Override
     public User signUp(String userName, String pwd) throws BaseException {
 
@@ -40,12 +52,20 @@ public class UserServiceImpl implements IUserService {
         }
 
         if (pwd == null) {
-            throw new InvalidUserNameException(AdevintaConstants.INVALID_PWD_NULL);
+            throw new InvalidUserNameException(AdevintaConstants.INVALID_SC_NULL);
         }
 
         return userRepository.save(new User(userName, pwd));
     }
 
+    /**
+     * List friends by user name.
+     *
+     * @param userName the user name
+     * @param pwd the pwd
+     * @return the list
+     * @throws BaseException the base exception
+     */
     @Override
     public List<User> listFriendsByUserName(String userName, String pwd) throws BaseException {
 
@@ -70,6 +90,12 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    /**
+     * Find by user name.
+     *
+     * @param userName the user name
+     * @return the optional
+     */
     @Override
     public Optional<User> findByUserName(String userName) {
         return userRepository.findByUserName(userName);

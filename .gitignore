@@ -2,6 +2,10 @@ HELP.md
 .gradle
 bin/
 build/
+sonar-project.properties
+.scannerwork
+.scannerwork/**
+
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**

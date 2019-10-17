@@ -1,28 +1,44 @@
 package com.schibsted.spain.friends.util;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AdevintaConstants.
  */
 public class AdevintaConstants {
+    
+    /**
+     * Instantiates a new adevinta constants.
+     */
+    private AdevintaConstants() {}
 
+    /** The Constant MIN_CHAR_USERNAME. */
     public static final Integer MIN_CHAR_USERNAME = 5;
     
+    /** The Constant MAX_CHAR_USERNAME. */
     public static final Integer MAX_CHAR_USERNAME = 10;
 
-    public static final Integer MIN_CHAR_PWD = 8;
+    /** The Constant MIN_CHAR_SC. */
+    public static final Integer MIN_CHAR_SC = 8;
     
-    public static final Integer MAX_CHAR_PWD = 12;
+    /** The Constant MAX_CHAR_SC. */
+    public static final Integer MAX_CHAR_SC = 12;
     
+    /** The Constant INVALID_USERNAME_NULL. */
     public static final String INVALID_USERNAME_NULL = "INVALID-UN-NULL";
 
+    /** The Constant INVALID_USERNAME_FORMAT. */
     public static final String INVALID_USERNAME_FORMAT = "INVALID-UN-FORMAT";
 
+    /** The Constant INVALID_USERNAME_LENGTH. */
     public static final String INVALID_USERNAME_LENGTH = "INVALID-UN-LENGTH";
 
-    public static final String INVALID_PWD_NULL = "INVALID-PWD-NULL";
+    /** The Constant INVALID_SC_NULL. */
+    public static final String INVALID_SC_NULL = "INVALID-SC-NULL";
 
-    public static final String INVALID_PWD_FORMAT = "INVALID-PWD-FORMAT";
+    /** The Constant INVALID_SC_FORMAT. */
+    public static final String INVALID_SC_FORMAT = "INVALID-SC-FORMAT";
 
-    public static final String INVALID_PWD_LENGTH = "INVALID-PWD-LENGTH";
+    /** The Constant INVALID_SC_LENGTH. */
+    public static final String INVALID_SC_LENGTH = "INVALID-SC-LENGTH";
 
 }

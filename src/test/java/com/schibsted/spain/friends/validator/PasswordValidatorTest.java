@@ -18,6 +18,10 @@ import org.junit.Test;
 
 import com.schibsted.spain.friends.model.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PasswordValidatorTest.
+ */
 public class PasswordValidatorTest {
 
     /** The validator. */
@@ -45,40 +49,52 @@ public class PasswordValidatorTest {
 
     }
 
+    /**
+     * Given new user when validate numeric pwd then success.
+     */
     @Test
     public void givenNewUser_whenValidateNumericPwd_thenSuccess() {
 
-        User dummyUser = new User("admin", "12345678");
+        User dummyUser = new User("admin1", "12345678");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
 
     }
 
+    /**
+     * Given new user when validate invalid MIN size char user name then fail.
+     */
     @Test
     public void givenNewUser_whenValidateInvalidMINSizeCharUserName_thenFail() {
 
-        User dummyUser = new User("admin", "1234");
+        User dummyUser = new User("admin2", "1234");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
 
     }
 
+    /**
+     * Given new user when validate invalid MAX size char user name then fail.
+     */
     @Test
     public void givenNewUser_whenValidateInvalidMAXSizeCharUserName_thenFail() {
 
-        User dummyUser = new User("admin", "@#FASD@#@RASD#R#ASD#");
+        User dummyUser = new User("admin3", "@#FASD@#@RASD#R#ASD#");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
 
     }
 
+    /**
+     * Given new user when validate invalid format pwd then fail.
+     */
     @Test
     public void givenNewUser_whenValidateInvalidFormatPwd_thenFail() {
 
-        User dummyUser = new User("admin", "j123-4");
+        User dummyUser = new User("admin4", "j123-4");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());

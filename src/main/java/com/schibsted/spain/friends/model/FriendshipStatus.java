@@ -1,5 +1,6 @@
 package com.schibsted.spain.friends.model;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum FriendshipStatus.
  */

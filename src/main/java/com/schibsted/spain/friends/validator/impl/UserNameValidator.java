@@ -11,14 +11,24 @@ import javax.validation.ConstraintValidatorContext;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author hrodriguez
+ * The Class UserNameValidator.
  *
+ * @author hrodriguez
  */
 public class UserNameValidator implements ConstraintValidator<UserNameConstraint, String> {
 
+    /** The pattern. */
     private Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
 
+    /**
+     * Checks if is valid.
+     *
+     * @param userName the user name
+     * @param context the context
+     * @return true, if is valid
+     */
     @Override
     public boolean isValid(String userName, ConstraintValidatorContext context) {
 

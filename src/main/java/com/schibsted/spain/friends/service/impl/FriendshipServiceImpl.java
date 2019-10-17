@@ -17,15 +17,27 @@ import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
 import com.schibsted.spain.friends.service.spec.IFriendshipService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FriendshipServiceImpl.
+ */
 @Service
 public class FriendshipServiceImpl implements IFriendshipService {
 
+    /** The fr repository. */
     @Autowired
     private FriendShipRepository frRepository;
 
+    /** The usr repository. */
     @Autowired
     private UserRepository usrRepository;
 
+    /**
+     * Request friendship.
+     *
+     * @param userOwner the user owner
+     * @param userAdded the user added
+     */
     @Override
     public void requestFriendship(String userOwner, String userAdded) {
 
@@ -47,12 +59,17 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 }
 
                 frRepository.save(relation);
-                return;
             });
 
         frRepository.save(new Friendship(userFrom, userTo, FriendshipStatus.REQUESTED));
     }
 
+    /**
+     * Accept friendship.
+     *
+     * @param userOwner the user owner
+     * @param userAdded the user added
+     */
     @Override
     public void acceptFriendship(String userOwner, String userAdded) {
 
@@ -85,6 +102,12 @@ public class FriendshipServiceImpl implements IFriendshipService {
 
     }
 
+    /**
+     * Decline friendship.
+     *
+     * @param userOwner the user owner
+     * @param userAdded the user added
+     */
     @Override
     public void declineFriendship(String userOwner, String userAdded) {
 
@@ -107,7 +130,6 @@ public class FriendshipServiceImpl implements IFriendshipService {
                 relation.setStatus(FriendshipStatus.DECLINED);
                 frRepository.save(relation);
             }
-            return;
         } else {
             throw new InvalidRequestRequiredException();
         }

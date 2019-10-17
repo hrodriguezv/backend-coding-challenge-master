@@ -26,6 +26,7 @@ import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class BuiltinMemoryStore.
  *
@@ -46,6 +47,7 @@ public class BuiltinMemoryStore {
     /** The mutex. */
     private static Object mutex = new Object();
 
+    /** The validator factory. */
     private ValidatorFactory validatorFactory;
 
     /**
@@ -89,9 +91,9 @@ public class BuiltinMemoryStore {
      */
     private void manageBaseException(String message) {
         switch (message) {
-        case AdevintaConstants.INVALID_PWD_NULL:
-        case AdevintaConstants.INVALID_PWD_FORMAT:
-        case AdevintaConstants.INVALID_PWD_LENGTH:
+        case AdevintaConstants.INVALID_SC_NULL:
+        case AdevintaConstants.INVALID_SC_FORMAT:
+        case AdevintaConstants.INVALID_SC_LENGTH:
             throw new InvalidPasswordException(message);
         case AdevintaConstants.INVALID_USERNAME_NULL:
         case AdevintaConstants.INVALID_USERNAME_FORMAT:
@@ -127,27 +129,66 @@ public class BuiltinMemoryStore {
         return instance.users.get(key);
     }
 
+    /**
+     * Update user.
+     *
+     * @param key the key
+     * @param value the value
+     * @return the user
+     */
     public User updateUser(String key, User value) {
         return instance.users.replace(key, value);
     }
 
+    /**
+     * Gets the user.
+     *
+     * @param key the key
+     * @return the user
+     */
     public User getUser(String key) {
         return instance.users.get(key);
     }
 
+    /**
+     * Adds the friendship.
+     *
+     * @param key the key
+     * @param value the value
+     * @return the friendship
+     */
     public Friendship addFriendship(FriendshipPK key, Friendship value) {
         instance.relations.putIfAbsent(key, value);
         return instance.relations.get(key);
     }
 
+    /**
+     * Update friendship.
+     *
+     * @param key the key
+     * @param value the value
+     * @return the friendship
+     */
     public Friendship updateFriendship(FriendshipPK key, Friendship value) {
         return instance.relations.replace(key, value);
     }
 
+    /**
+     * Gets the relationship.
+     *
+     * @param key the key
+     * @return the relationship
+     */
     public Friendship getRelationship(FriendshipPK key) {
         return instance.relations.get(key);
     }
 
+    /**
+     * Gets the friends list by user name.
+     *
+     * @param userName the user name
+     * @return the friends list by user name
+     */
     public List<User> getFriendsListByUserName(String userName) {
         return relations.values()
             .stream()

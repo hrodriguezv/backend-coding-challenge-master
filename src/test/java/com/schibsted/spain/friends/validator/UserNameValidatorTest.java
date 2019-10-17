@@ -18,6 +18,10 @@ import org.junit.Test;
 
 import com.schibsted.spain.friends.model.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserNameValidatorTest.
+ */
 public class UserNameValidatorTest {
 
     /** The validator. */
@@ -45,6 +49,9 @@ public class UserNameValidatorTest {
 
     }
 
+    /**
+     * Given new user when validate user name then fail.
+     */
     @Test
     public void givenNewUser_whenValidateUserName_thenFail() {
 
@@ -55,6 +62,9 @@ public class UserNameValidatorTest {
 
     }
 
+    /**
+     * Given new user when validate invalid MIN size char user name then fail.
+     */
     @Test
     public void givenNewUser_whenValidateInvalidMINSizeCharUserName_thenFail() {
 
@@ -65,6 +75,9 @@ public class UserNameValidatorTest {
 
     }
 
+    /**
+     * Given new user when validate invalid MAX size char user name then fail.
+     */
     @Test
     public void givenNewUser_whenValidateInvalidMAXSizeCharUserName_thenFail() {
 

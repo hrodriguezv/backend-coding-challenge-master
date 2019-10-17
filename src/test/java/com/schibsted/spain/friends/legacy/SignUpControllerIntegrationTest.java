@@ -21,9 +21,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author hrodriguez
+ * The Class SignUpControllerIntegrationTest.
  *
+ * @author hrodriguez
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -36,43 +38,66 @@ public class SignUpControllerIntegrationTest {
     /** The Constant RESOURCE_URL. */
     private static final String RESOURCE_URL = "/signup";
 
+    /** The Constant USERNAME_KEY. */
+    private static final String USERNAME_KEY = "username";
+    
+    /** The Constant SC_KEY. */
+    private static final String SC_KEY = "X-Password";
+
+    /** The headers. */
     private HttpHeaders headers;
+    
+    /** The body. */
     private MultiValueMap<String, String> body;
+    
+    /** The request. */
     private HttpEntity<MultiValueMap<String, String>> request;
 
+    /**
+     * Setup.
+     */
     @Before
     public void setup() {
         headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        body = new LinkedMultiValueMap<String, String>();
+        body = new LinkedMultiValueMap<>();
     }
 
+    /**
+     * Given user nameand pwd when sign up then success.
+     */
     @Test
     public void givenUserNameandPwd_whenSignUp_thenSuccess() {
 
-        headers.add("X-Password", "HolaMund0");
-        body.add("username", "admin");
-        request = new HttpEntity<MultiValueMap<String, String>>(body, headers);
+        headers.add(SC_KEY, "HolaMund0");
+        body.add(USERNAME_KEY, "admin");
+        request = new HttpEntity<>(body, headers);
 
         ResponseEntity<Void> response = client.postForEntity(RESOURCE_URL, request, Void.class);
         assertTrue(response.getStatusCode() == HttpStatus.OK);
     }
 
+    /**
+     * Given user nameand invalid format pwd when sign up then fail.
+     */
     @Test
     public void givenUserNameandInvalidFormatPwd_whenSignUp_thenFail() {
-        headers.add("X-Password", "HolaMund0!");
-        body.add("username", "admin");
-        request = new HttpEntity<MultiValueMap<String, String>>(body, headers);
+        headers.add(SC_KEY, "HolaMund0!");
+        body.add(USERNAME_KEY, "admin");
+        request = new HttpEntity<>(body, headers);
 
         ResponseEntity<Void> response = client.postForEntity(RESOURCE_URL, request, Void.class);
         assertTrue(response.getStatusCode() == HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    /**
+     * Given invalid user name when sign up then fail.
+     */
     @Test
     public void givenInvalidUserName_whenSignUp_thenFail() {
-        headers.add("X-Password", "HolaMund0");
-        body.add("username", "sa");
-        request = new HttpEntity<MultiValueMap<String, String>>(body, headers);
+        headers.add(SC_KEY, "HolaMund0");
+        body.add(USERNAME_KEY, "sa");
+        request = new HttpEntity<>(body, headers);
 
         ResponseEntity<Void> response = client.postForEntity(RESOURCE_URL, request, Void.class);
         assertTrue(response.getStatusCode() == HttpStatus.UNPROCESSABLE_ENTITY);
