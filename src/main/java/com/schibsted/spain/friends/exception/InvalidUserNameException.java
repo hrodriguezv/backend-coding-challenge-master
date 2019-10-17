@@ -3,7 +3,6 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * Exception thrown in case a received user data with invalid user name.
  * 

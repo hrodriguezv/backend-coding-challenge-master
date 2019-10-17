@@ -3,9 +3,8 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvalidRequestRequiredException.
+ * Exception thrown in case an accept friendship is received with no request sent before.
  *
  * @author hrodriguez
  */

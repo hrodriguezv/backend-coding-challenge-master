@@ -3,9 +3,8 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvalidUserDoesNotExistException.
+ * Exception thrown in case of process a request from a user has not been registered.
  *
  * @author hrodriguez
  */

@@ -24,7 +24,6 @@ import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FriendShipRepositoryIntegrationTest.
  *

@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import com.schibsted.spain.friends.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserNameValidatorTest.
  */

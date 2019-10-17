@@ -3,9 +3,8 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvalidPreviousDeclinedRequestException.
+ * Exception thrown in case a received a repeated declined request.
  *
  * @author hrodriguez
  */

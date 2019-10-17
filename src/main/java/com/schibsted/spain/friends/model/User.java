@@ -6,9 +6,8 @@ package com.schibsted.spain.friends.model;
 import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
 import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class User.
+ * Data structure that reflects the characteristics of a User.
  *
  * @author hrodriguez
  */

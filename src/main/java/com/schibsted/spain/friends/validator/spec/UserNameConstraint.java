@@ -14,9 +14,9 @@ import javax.validation.Payload;
 
 import com.schibsted.spain.friends.validator.impl.UserNameValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface UserNameConstraint.
+ * Constraint annotation that can be used to ensure that a username field is valid, 
+ * as long as it complies with business rule defined in its implementation.
  *
  * @author hrodriguez
  */

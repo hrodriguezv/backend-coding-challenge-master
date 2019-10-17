@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.schibsted.spain.friends.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface UserRepository.
+ * Defines the operations that should be supported to store/obtain Users.
+ * The implementation of this contract belongs to the persistence layer of this solution.
+ * 
+ * @author hrodriguez
  */
 @Repository
 public interface UserRepository {

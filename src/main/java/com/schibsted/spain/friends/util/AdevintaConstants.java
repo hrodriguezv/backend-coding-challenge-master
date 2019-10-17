@@ -1,8 +1,8 @@
 package com.schibsted.spain.friends.util;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AdevintaConstants.
+ * The Class AdevintaConstants allows to exposes fields constants that will be used 
+ * for different classes on this solution.
  */
 public class AdevintaConstants {
     

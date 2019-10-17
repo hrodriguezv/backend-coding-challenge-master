@@ -5,9 +5,8 @@ package com.schibsted.spain.friends.model;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Friendship.
+ * Data structure that reflects the characteristics of a relation between Users.
  *
  * @author hrodriguez
  */

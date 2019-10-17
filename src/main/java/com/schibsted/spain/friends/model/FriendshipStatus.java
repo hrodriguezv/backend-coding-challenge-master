@@ -1,8 +1,7 @@
 package com.schibsted.spain.friends.model;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Enum FriendshipStatus.
+ * Represents the transitional state of relation.
  */
 public enum FriendshipStatus {
 

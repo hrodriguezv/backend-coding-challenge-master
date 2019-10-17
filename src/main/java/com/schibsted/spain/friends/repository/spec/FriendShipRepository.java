@@ -9,9 +9,11 @@ import com.schibsted.spain.friends.model.Friendship;
 import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface FriendShipRepository.
+ * Defines the operations that should be supported to store/obtain relations between Users.
+ * The implementation of this contract belongs to the persistence layer of this solution.
+ * 
+ * @author hrodriguez
  */
 @Repository
 public interface FriendShipRepository {

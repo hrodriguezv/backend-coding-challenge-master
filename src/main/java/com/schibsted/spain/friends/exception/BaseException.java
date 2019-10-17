@@ -1,6 +1,5 @@
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * Superclass of those exceptions that can be thrown during the reception of data from API, 
  * following the business rules established to solve this problem.

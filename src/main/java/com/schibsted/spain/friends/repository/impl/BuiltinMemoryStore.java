@@ -26,9 +26,8 @@ import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuiltinMemoryStore.
+ * Class that contains the data structure required to fulfill the requirements to solve this friendship challenge.
  *
  * @author hrodriguez
  */

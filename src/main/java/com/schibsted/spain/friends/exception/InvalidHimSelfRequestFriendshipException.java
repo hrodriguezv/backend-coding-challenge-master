@@ -3,21 +3,20 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvalidHimSelfRequestFrienshipException.
+ * Exception thrown in case a received request friendship from same user.
  *
  * @author hrodriguez
  */
-public class InvalidHimSelfRequestFrienshipException extends BaseException {
+public class InvalidHimSelfRequestFriendshipException extends BaseException {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 2153342451180060447L;
 
     /**
-     * Instantiates a new invalid him self request frienship exception.
+     * Instantiates a new invalid him self request friendship exception.
      */
-    public InvalidHimSelfRequestFrienshipException() {
+    public InvalidHimSelfRequestFriendshipException() {
     }
 
     /**
@@ -25,7 +24,7 @@ public class InvalidHimSelfRequestFrienshipException extends BaseException {
      *
      * @param message the message
      */
-    public InvalidHimSelfRequestFrienshipException(String message) {
+    public InvalidHimSelfRequestFriendshipException(String message) {
         super(message);
     }
 

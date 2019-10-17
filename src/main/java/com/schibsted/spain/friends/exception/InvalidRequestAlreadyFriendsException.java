@@ -3,9 +3,8 @@
  */
 package com.schibsted.spain.friends.exception;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvalidRequestAlreadyFriendsException.
+ * Exception thrown in case a received a request friendship with an already friendship.
  *
  * @author hrodriguez
  */

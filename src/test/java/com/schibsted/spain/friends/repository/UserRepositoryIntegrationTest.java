@@ -23,7 +23,6 @@ import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserRepositoryIntegrationTest.
  */

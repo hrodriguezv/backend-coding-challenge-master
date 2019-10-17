@@ -3,9 +3,8 @@ package com.schibsted.spain.friends;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FriendsApplication.
+ * The Class FriendsApplication launches this application on port 8080.
  */
 @SpringBootApplication
 public class FriendsApplication {

@@ -16,17 +16,17 @@ import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
-import com.schibsted.spain.friends.service.spec.IUserService;
+import com.schibsted.spain.friends.service.spec.UserService;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserServiceImpl.
+ * Implementation of service layer defined to allow the management of users
+ * in memory.
  *
  * @author hrodriguez
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     /** The user repository. */
     @Autowired

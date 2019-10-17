@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.schibsted.spain.friends.exception.InvalidHimSelfRequestFrienshipException;
+import com.schibsted.spain.friends.exception.InvalidHimSelfRequestFriendshipException;
 import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.service.spec.IFriendshipService;
-import com.schibsted.spain.friends.service.spec.IUserService;
+import com.schibsted.spain.friends.service.spec.FriendshipService;
+import com.schibsted.spain.friends.service.spec.UserService;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FriendshipLegacyController.
  */
@@ -27,11 +26,11 @@ public class FriendshipLegacyController {
 
     /** The user service. */
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     /** The friend ship service. */
     @Autowired
-    private IFriendshipService friendShipService;
+    private FriendshipService friendShipService;
 
     /**
      * Check entry data.
@@ -45,7 +44,7 @@ public class FriendshipLegacyController {
         }
 
         if (usernameFrom.equals(usernameTo)) {
-            throw new InvalidHimSelfRequestFrienshipException(usernameFrom);
+            throw new InvalidHimSelfRequestFriendshipException(usernameFrom);
         }
     }
 

@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserRepositoryImpl.
- *
+ * Implementation of persistent layer defined to allow the management of users
+ * in memory.
+ * 
  * @author hrodriguez
  */
 @Repository

@@ -13,10 +13,10 @@ import com.schibsted.spain.friends.model.FriendshipPK;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FriendShipRepositoryImpl.
- *
+ * Implementation of persistent layer defined to allow the management of relations between users
+ * in memory.
+ *  
  * @author hrodriguez
  */
 @Repository

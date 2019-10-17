@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
-// TODO: Auto-generated Javadoc
 /**
  * Class designed to determine the solution's behavior when encountering an execution error.
  *
@@ -71,8 +70,8 @@ public class GlobalExceptionHandler {
      * @param ex the ex
      * @return the response entity
      */
-    @ExceptionHandler(InvalidHimSelfRequestFrienshipException.class)
-    public ResponseEntity<Void> handleInvalidHimSelfRequestException(InvalidHimSelfRequestFrienshipException ex) {
+    @ExceptionHandler(InvalidHimSelfRequestFriendshipException.class)
+    public ResponseEntity<Void> handleInvalidHimSelfRequestException(InvalidHimSelfRequestFriendshipException ex) {
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 

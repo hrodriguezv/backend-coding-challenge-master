@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.schibsted.spain.friends.service.spec.IUserService;
+import com.schibsted.spain.friends.service.spec.UserService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SignupLegacyController.
  */
@@ -19,7 +18,7 @@ public class SignupLegacyController {
 
     /** The user service. */
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     /**
      * Sign up.

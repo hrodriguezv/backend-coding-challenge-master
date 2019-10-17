@@ -11,9 +11,8 @@ import javax.validation.ConstraintValidatorContext;
 import com.schibsted.spain.friends.util.AdevintaConstants;
 import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PasswordValidator.
+ * Defines the logic to validate a given constraint on a password field used in User object.
  *
  * @author hrodriguez
  */

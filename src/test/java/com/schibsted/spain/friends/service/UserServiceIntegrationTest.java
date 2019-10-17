@@ -16,9 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.schibsted.spain.friends.exception.InvalidPasswordException;
 import com.schibsted.spain.friends.exception.InvalidUserNameException;
 import com.schibsted.spain.friends.model.User;
-import com.schibsted.spain.friends.service.spec.IUserService;
+import com.schibsted.spain.friends.service.spec.UserService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserServiceIntegrationTest.
  *
@@ -30,7 +29,7 @@ public class UserServiceIntegrationTest {
 
     /** The service. */
     @Autowired
-    private IUserService service;
+    private UserService service;
 
     /**
      * Given new user when sign up using correct values then OK.

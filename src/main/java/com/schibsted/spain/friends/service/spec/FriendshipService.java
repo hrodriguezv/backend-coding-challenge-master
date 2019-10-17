@@ -1,10 +1,12 @@
 package com.schibsted.spain.friends.service.spec;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface IFriendshipService.
+ * Defines the operations that should be supported to store/obtain relations between Users.
+ * The implementation of this contract belongs to the service layer of this solution.
+ * 
+ * @author hrodriguez
  */
-public interface IFriendshipService {
+public interface FriendshipService {
 
     /**
      * Request friendship.

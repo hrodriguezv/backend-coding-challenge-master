@@ -15,14 +15,16 @@ import com.schibsted.spain.friends.model.FriendshipStatus;
 import com.schibsted.spain.friends.model.User;
 import com.schibsted.spain.friends.repository.spec.FriendShipRepository;
 import com.schibsted.spain.friends.repository.spec.UserRepository;
-import com.schibsted.spain.friends.service.spec.IFriendshipService;
+import com.schibsted.spain.friends.service.spec.FriendshipService;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FriendshipServiceImpl.
+ * Implementation of service layer defined to allow the management of relations between users
+ * in memory.
+ * 
+ * @author hrodriguez
  */
 @Service
-public class FriendshipServiceImpl implements IFriendshipService {
+public class FriendshipServiceImpl implements FriendshipService {
 
     /** The fr repository. */
     @Autowired

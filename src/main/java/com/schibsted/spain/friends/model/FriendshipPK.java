@@ -5,9 +5,8 @@ package com.schibsted.spain.friends.model;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FriendshipPK.
+ * Represents primary key of friendship's store 
  *
  * @author hrodriguez
  */
