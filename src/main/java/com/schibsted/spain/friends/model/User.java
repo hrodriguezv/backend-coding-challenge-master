@@ -3,9 +3,6 @@
  */
 package com.schibsted.spain.friends.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.schibsted.spain.friends.validator.spec.PasswordConstraint;
 import com.schibsted.spain.friends.validator.spec.UserNameConstraint;
 
@@ -24,13 +21,9 @@ public class User {
     @PasswordConstraint
     private String password;
 
-    /** The friends. */
-    private Set<Friendship> friends = new HashSet<>();
-
-    public User(String usrName, String pwd, Set<Friendship> emptySet) {
+    public User(String usrName, String pwd) {
         this.userName = usrName;
         this.password = pwd;
-        this.friends = emptySet;
     }
 
     public String getUserName() {
@@ -49,14 +42,6 @@ public class User {
         this.password = password;
     }
 
-    public Set<Friendship> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<Friendship> friends) {
-        this.friends = friends;
-    }
-
     public static int compareByReverseUserName(User lusr, User rusr) {
         return rusr.userName.compareTo(lusr.userName);
     }
@@ -65,7 +50,6 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((friends == null) ? 0 : friends.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((userName == null) ? 0 : userName.hashCode());
         return result;
@@ -80,13 +64,6 @@ public class User {
             return false;
         }
         User other = (User) obj;
-        if (friends == null) {
-            if (other.friends != null) {
-                return false;
-            }
-        } else if (!friends.equals(other.friends)) {
-            return false;
-        }
         if (password == null) {
             if (other.password != null) {
                 return false;

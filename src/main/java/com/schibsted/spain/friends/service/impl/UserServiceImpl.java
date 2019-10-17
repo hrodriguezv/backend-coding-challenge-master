@@ -3,7 +3,6 @@
  */
 package com.schibsted.spain.friends.service.impl;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class UserServiceImpl implements IUserService {
             throw new InvalidUserNameException(AdevintaConstants.INVALID_PWD_NULL);
         }
 
-        return userRepository.save(new User(userName, pwd, Collections.emptySet()));
+        return userRepository.save(new User(userName, pwd));
     }
 
     @Override

@@ -6,7 +6,6 @@ package com.schibsted.spain.friends.validator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collections;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -39,7 +38,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidatePwd_thenSuccess() {
 
-        User dummyUser = new User("admin", "j12345678", Collections.emptySet());
+        User dummyUser = new User("admin", "j12345678");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
@@ -49,7 +48,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidateNumericPwd_thenSuccess() {
 
-        User dummyUser = new User("admin", "12345678", Collections.emptySet());
+        User dummyUser = new User("admin", "12345678");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertTrue(violations.isEmpty());
@@ -59,7 +58,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidateInvalidMINSizeCharUserName_thenFail() {
 
-        User dummyUser = new User("admin", "1234", Collections.emptySet());
+        User dummyUser = new User("admin", "1234");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
@@ -69,7 +68,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidateInvalidMAXSizeCharUserName_thenFail() {
 
-        User dummyUser = new User("admin", "@#FASD@#@RASD#R#ASD#", Collections.emptySet());
+        User dummyUser = new User("admin", "@#FASD@#@RASD#R#ASD#");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());
@@ -79,7 +78,7 @@ public class PasswordValidatorTest {
     @Test
     public void givenNewUser_whenValidateInvalidFormatPwd_thenFail() {
 
-        User dummyUser = new User("admin", "j123-4", Collections.emptySet());
+        User dummyUser = new User("admin", "j123-4");
 
         Set<ConstraintViolation<User>> violations = validator.validate(dummyUser);
         assertFalse(violations.isEmpty());

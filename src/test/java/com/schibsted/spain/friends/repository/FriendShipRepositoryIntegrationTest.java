@@ -8,7 +8,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,10 +40,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenUser1RequestFriendshipUser2_thenSuccess() {
-        User user1 = new User("jperez", "Holamund0", Collections.emptySet());
+        User user1 = new User("jperez", "Holamund0");
         userRepository.save(user1);
 
-        User user2 = new User("ggonzalez", "mund0Hola", Collections.emptySet());
+        User user2 = new User("ggonzalez", "mund0Hola");
         userRepository.save(user2);
 
         Friendship relation = friendshipRepository.save(new Friendship(user1, user2, FriendshipStatus.REQUESTED));
@@ -54,10 +53,10 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenUser1SentRequestFriendshipUser2_thenOK() {
-        User user1 = new User("hperez", "Holamund0", Collections.emptySet());
+        User user1 = new User("hperez", "Holamund0");
         userRepository.save(user1);
 
-        User user2 = new User("ogonzalez", "mund0Hola", Collections.emptySet());
+        User user2 = new User("ogonzalez", "mund0Hola");
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.REQUESTED);
@@ -71,15 +70,15 @@ public class FriendShipRepositoryIntegrationTest {
 
     @Test
     public void givenUsers_whenAcceptedFriendship_thenOK() {
-        User user1 = new User("pperez", "Holamund0", Collections.emptySet());
+        User user1 = new User("pperez", "Holamund0");
         userRepository.save(user1);
 
-        User user2 = new User("ygonzalez", "mund0Hola", Collections.emptySet());
+        User user2 = new User("ygonzalez", "mund0Hola");
         userRepository.save(user2);
 
         Friendship relation = new Friendship(user1, user2, FriendshipStatus.ACCEPTED);
         friendshipRepository.save(relation);
-                
+
         List<User> friends = friendshipRepository.findFriendsByUserName(user1.getUserName());
 
         assertThat(friends, hasItem(user2));
