@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.schibsted.spain.friends.exception.InvalidPasswordException;
 import com.schibsted.spain.friends.exception.InvalidPreviousRequestSentException;
 import com.schibsted.spain.friends.exception.InvalidRequestAlreadyFriendsException;
 import com.schibsted.spain.friends.exception.InvalidRequestRequiredException;
@@ -39,14 +40,19 @@ public class FriendshipServiceImpl implements FriendshipService {
      *
      * @param userOwner the user owner
      * @param userAdded the user added
+     * @param headerAuth the header auth
      */
     @Override
-    public void requestFriendship(String userOwner, String userAdded) {
+    public void requestFriendship(String userOwner, String userAdded, String headerAuth) {
 
         User userFrom = usrRepository.findByUserName(userOwner)
             .orElseThrow(InvalidUserDoesNotExistException::new);
         User userTo = usrRepository.findByUserName(userAdded)
             .orElseThrow(InvalidUserDoesNotExistException::new);
+
+        if (!userFrom.getPassword()
+            .equals(headerAuth))
+            throw new InvalidPasswordException();
 
         frRepository.findById(new FriendshipPK(userFrom, userTo))
             .ifPresent(relation -> {
@@ -71,14 +77,19 @@ public class FriendshipServiceImpl implements FriendshipService {
      *
      * @param userOwner the user owner
      * @param userAdded the user added
+     * @param headerAuth the header auth
      */
     @Override
-    public void acceptFriendship(String userOwner, String userAdded) {
+    public void acceptFriendship(String userOwner, String userAdded, String headerAuth) {
 
         User userFrom = usrRepository.findByUserName(userOwner)
             .orElseThrow(InvalidUserDoesNotExistException::new);
         User userTo = usrRepository.findByUserName(userAdded)
             .orElseThrow(InvalidUserDoesNotExistException::new);
+
+        if (!userFrom.getPassword()
+            .equals(headerAuth))
+            throw new InvalidPasswordException();
 
         Optional<Friendship> previousRelation = frRepository.findById(new FriendshipPK(userTo, userFrom));
 
@@ -109,14 +120,19 @@ public class FriendshipServiceImpl implements FriendshipService {
      *
      * @param userOwner the user owner
      * @param userAdded the user added
+     * @param headerAuth the header auth
      */
     @Override
-    public void declineFriendship(String userOwner, String userAdded) {
+    public void declineFriendship(String userOwner, String userAdded, String headerAuth) {
 
         User userFrom = usrRepository.findByUserName(userOwner)
             .orElseThrow(InvalidUserDoesNotExistException::new);
         User userTo = usrRepository.findByUserName(userAdded)
             .orElseThrow(InvalidUserDoesNotExistException::new);
+
+        if (!userFrom.getPassword()
+            .equals(headerAuth))
+            throw new InvalidPasswordException();
 
         Optional<Friendship> previousRelation = frRepository.findById(new FriendshipPK(userTo, userFrom));
 

@@ -59,7 +59,7 @@ public class FriendshipLegacyController {
     void requestFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
-        friendShipService.requestFriendship(usernameFrom, usernameTo);
+        friendShipService.requestFriendship(usernameFrom, usernameTo, password);
 
     }
 
@@ -74,7 +74,7 @@ public class FriendshipLegacyController {
     void acceptFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
-        friendShipService.acceptFriendship(usernameFrom, usernameTo);
+        friendShipService.acceptFriendship(usernameFrom, usernameTo, password);
 
     }
 
@@ -89,7 +89,7 @@ public class FriendshipLegacyController {
     void declineFriendship(@RequestParam("usernameFrom") String usernameFrom, @RequestParam("usernameTo") String usernameTo, @RequestHeader("X-Password") String password) {
 
         checkEntryData(usernameFrom, usernameTo);
-        friendShipService.declineFriendship(usernameFrom, usernameTo);
+        friendShipService.declineFriendship(usernameFrom, usernameTo, password);
 
     }
 

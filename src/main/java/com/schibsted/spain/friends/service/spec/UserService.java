@@ -18,11 +18,11 @@ public interface UserService {
      * List friends by user name.
      *
      * @param userName the user name
-     * @param pwd the pwd
+     * @param headerAuth the header auth
      * @return the list
      * @throws BaseException the base exception
      */
-    List<User> listFriendsByUserName(String userName, String pwd) throws BaseException;
+    List<User> listFriendsByUserName(String userName, String headerAuth) throws BaseException;
 
     /**
      * Sign up.
@@ -38,7 +38,8 @@ public interface UserService {
      * Find by user name.
      *
      * @param userName the user name
+     * @param headerAuth the header auth
      * @return the optional
      */
-    Optional<User> findByUserName(String userName);
+    Optional<User> findByUserName(String userName, String headerAuth);
 }

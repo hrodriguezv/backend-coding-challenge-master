@@ -28,7 +28,7 @@ import org.springframework.util.MultiValueMap;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class SignUpControllerIntegrationTest {
+public class SignUpLegacyControllerIntegrationTest {
 
     /** The client. */
     @Autowired

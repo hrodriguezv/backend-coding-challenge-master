@@ -94,10 +94,11 @@ public class UserServiceImpl implements UserService {
      * Find by user name.
      *
      * @param userName the user name
+     * @param headerAuth the header auth
      * @return the optional
      */
     @Override
-    public Optional<User> findByUserName(String userName) {
+    public Optional<User> findByUserName(String userName, String headerAuth) {
         return userRepository.findByUserName(userName);
     }
 
