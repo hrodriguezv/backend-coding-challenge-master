@@ -42,7 +42,7 @@ public class FriendshipServiceIntegrationTest {
 
         User user2 = userService.signUp("ggonzalez", "mund0Hola");
 
-        friendshipService.requestFriendship(user1.getUserName(), user2.getUserName(), "Holamundo0");
+        friendshipService.requestFriendship(user1.getUserName(), user2.getUserName(), "Holamund0");
     }
 
     /**
